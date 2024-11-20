@@ -1,5 +1,8 @@
 # ReadersClub
 
+## Database Schema
+![db_schema](https://github.com/user-attachments/assets/57a44164-bfc7-4ee1-b58b-ce6457233e0a)
+
 ## User Stories
 
 ** Clubs
