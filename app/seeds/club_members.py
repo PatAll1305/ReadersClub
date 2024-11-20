@@ -43,7 +43,7 @@ club_members_seed_data = [
         'user_id': 7
     },
     {
-        'club_id': 9,
+        'club_id': 8,
         'user_id': 10
     },
     {
