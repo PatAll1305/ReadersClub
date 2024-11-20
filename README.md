@@ -1,7 +1,7 @@
 # ReadersClub
 
 ## Database Schema
-![db_schema](https://github.com/user-attachments/assets/57a44164-bfc7-4ee1-b58b-ce6457233e0a)
+![db_schema](https://github.com/user-attachments/assets/396ad9e3-f1d0-4a01-afb8-a3484b00e94a)
 
 ## User Stories
 
