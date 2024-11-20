@@ -1,7 +1,7 @@
 # ReadersClub
 
 ## Database Schema
-![db schema](https://github.com/user-attachments/assets/58854498-b15c-4048-bc88-81c77b0e39a6)
+![db schema](https://github.com/user-attachments/assets/5eb9f344-6442-4639-a5f5-1f8a95cf0b29)
 
 ## User Stories
 
@@ -35,5 +35,9 @@
 
 ### Single Book Page
 ![Single Book](https://github.com/user-attachments/assets/bff0e2c2-2c18-4e19-9c6e-46a76daca338)
+
+### Upload Book
+![Upload Book](https://github.com/user-attachments/assets/398ae747-4a55-49c9-ad62-34bca1c49234)
+
 
 
