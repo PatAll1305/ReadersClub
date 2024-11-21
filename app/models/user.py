@@ -11,16 +11,17 @@ class User(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
+    username = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now())
 
-    clubs_owned = db.relationship('Club', backref='owner', lazy=True)
-    club_memberships = db.relationship('ClubMember', backref='member', lazy=True)
+    club_memberships = db.relationship('ClubMember', back_populates='users')
     books_added = db.relationship('Book', backref='added_by', lazy=True)
     liked_books = db.relationship('LikedBook', backref='user', lazy=True)
     disliked_books = db.relationship('DislikedBook', backref='user', lazy=True)
+    clubs = db.relationship('Club', back_populates='owner')
+    books = db.relationship('Book', back_populates='user')
 
     @property
     def password(self):

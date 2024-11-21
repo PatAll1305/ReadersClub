@@ -17,6 +17,7 @@ class Book(db.Model):
 
     likes = db.relationship('LikedBook', backref='book', lazy=True)
     dislikes = db.relationship('DislikedBook', backref='book', lazy=True)
+    user = db.relationship('User', back_populates='books')
 
     def to_dict(self):
         return {

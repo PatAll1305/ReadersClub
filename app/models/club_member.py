@@ -10,6 +10,9 @@ class ClubMember(db.Model):
     club_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('clubs.id')), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
 
+    club = db.relationship('Club', back_populates='members')
+    users = db.relationship('User', back_populates='club_memberships')  
+
     def to_dict(self):
         return {
             "id": self.id,

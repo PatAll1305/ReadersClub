@@ -10,7 +10,8 @@ class Club(db.Model):
     club_name = db.Column(db.String(255), nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
 
-    members = db.relationship('ClubMember', backref='club', lazy=True)
+    owner = db.relationship('User', back_populates='clubs')
+    members = db.relationship('ClubMember', back_populates='club', cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
