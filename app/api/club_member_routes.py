@@ -5,18 +5,6 @@ from sqlalchemy.orm import joinedload
 
 club_member_routes = Blueprint('club_members', __name__)
 
-# @club_member_routes.route('/', methods=['GET'])
-# def get_memberships():
-#     """
-#     Query for all club memberships and return them as a list of dictionaries.
-#     """
-#     data = request.json
-#     club_id = data[club_id]
-#     club = Club.quesry.get_or_404(club_id)
-
-#     members = ClubMember.query.filter_by(club_id = club.id).options(joinedload(ClubMember.users)).all()
-#     return jsonify({'members': [member.to_dict() for member in members]}), 200
-
 @club_member_routes.route('/', methods=['POST'])
 @login_required
 def add_membership():

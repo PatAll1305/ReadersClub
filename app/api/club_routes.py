@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
-from app.models import db, Club, ClubMember
+from app.models import db, Club, ClubMember, User
+from sqlalchemy.orm import joinedload
 
 club_routes = Blueprint('clubs', __name__)
 
@@ -7,6 +8,22 @@ club_routes = Blueprint('clubs', __name__)
 def get_clubs():
     clubs = Club.query.all()
     return jsonify([club.to_dict() for club in clubs])
+
+@club_routes.route('/<int:id>/members', methods=['GET'])
+def get_memberships(id):
+    """
+    Query for all club memberships and return them as a list of dictionaries.
+    """
+    club = Club.query.get_or_404(id)
+
+    members = ClubMember.query.filter_by(club_id=club.id).options(
+        joinedload(ClubMember.users)
+    ).all()
+
+    return jsonify({
+        'club': club.to_dict(),
+        'members': [member.to_dict() for member in members]
+    }), 200
 
 @club_routes.route('/', methods=['POST'])
 def create_club():
