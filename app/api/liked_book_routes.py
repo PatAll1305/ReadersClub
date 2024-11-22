@@ -4,14 +4,6 @@ from app.models import LikedBook, db
 
 liked_book_routes = Blueprint('liked_books', __name__)
 
-@liked_book_routes.route('/')
-def get_liked_books():
-    """
-    Query for all liked books and return them as a list of dictionaries.
-    """
-    liked_books = LikedBook.query.all()
-    return {'liked_books': [liked_book.to_dict() for liked_book in liked_books]}
-
 @liked_book_routes.route('/', methods=['POST'])
 @login_required
 def add_liked_book():

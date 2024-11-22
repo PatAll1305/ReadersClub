@@ -22,7 +22,12 @@ def get_memberships(id):
 
     return jsonify({
         'club': club.to_dict(),
-        'members': [member.to_dict() for member in members]
+        'members': [
+            {
+                **member.to_dict(),
+                'user': User.query.get(member.user_id).to_dict()
+            } for member in members
+        ]
     }), 200
 
 @club_routes.route('/', methods=['POST'])

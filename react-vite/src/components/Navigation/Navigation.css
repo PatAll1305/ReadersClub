@@ -1,3 +1,62 @@
 .profile-dropdown {
   position: absolute;
 }
+
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 5px solid purple;
+  border-top: 5px solid purple;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+}
+
+#logo {
+  text-decoration: none;
+  font-size: xx-large;
+  font-weight: 900;
+  color: green;
+  margin-left: 50px;
+}
+
+#logo:hover {
+  cursor: pointer;
+  color: red;
+}
+
+#profile-button>.button>* {
+  width: 50px;
+  height: 50px;
+}
+
+#profile-button {
+  margin-right: 50px;
+
+  :hover {
+    cursor: pointer;
+  }
+}
+
+.genres {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+
+  .genre {
+    font-size: large;
+    font-weight: bolder;
+    width: fit-content;
+  }
+
+}
+
+.genre:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+}

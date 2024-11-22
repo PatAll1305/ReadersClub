@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import User
+from flask_login import login_required, current_user
+from app.models import User, Book, LikedBook, DislikedBook
+from sqlalchemy.orm import joinedload
 
 user_routes = Blueprint('users', __name__)
 
@@ -23,3 +24,28 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+@user_routes.route('/<int:id>/liked-books')
+def get_liked_books(id):
+    """
+    Query for all liked books of a user and return detailed info about each book
+    """
+    if current_user.id != id:
+        return jsonify({"error": "Unauthorized access"}), 403
+
+    liked_books = LikedBook.query.filter_by(user_id=id).options(joinedload(LikedBook.book)).all()
+
+    if not liked_books:
+        return jsonify({"message": "No liked books found"}), 404
+
+    liked_books_details = [
+        {
+            "liked_book_id": book.id,
+            "book_id": book.book_id,
+            "user_id": book.user_id,
+            "book": book.book.to_dict()  
+        }
+        for book in liked_books
+    ]
+
+    return jsonify(liked_books_details), 200
