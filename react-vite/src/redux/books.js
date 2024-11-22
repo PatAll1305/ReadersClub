@@ -1,8 +1,16 @@
-const SET_BOOKS = 'books/setBooks';
+import { csrfFetch } from './csrf';
+const SET_BOOKS_BY_GENRE = 'books/setBooksByGenre';
 const SET_USER_LIKED_BOOKS = 'books/setUserLikedBooks';
+const GET_ALL_BOOKS = 'books/getAllBooks';
 
-const setBooks = (books) => ({
-    type: SET_BOOKS,
+
+const setBooksByGenre = (books) => ({
+    type: SET_BOOKS_BY_GENRE,
+    payload: books,
+});
+
+const getAllBooks = (books) => ({
+    type: GET_ALL_BOOKS,
     payload: books,
 });
 
@@ -11,9 +19,8 @@ const setUserLikedBooks = (likedBooks) => ({
     payload: likedBooks,
 });
 
-import { csrfFetch } from './csrf';
 
-export const thunkFetchBooks = () => async (dispatch) => {
+export const thunkFetchBooksByGenre = () => async (dispatch) => {
     const response = await csrfFetch('/api/books');
     if (response.ok) {
         const data = await response.json();
@@ -24,7 +31,15 @@ export const thunkFetchBooks = () => async (dispatch) => {
             return acc;
         }, {});
 
-        dispatch(setBooks(groupedBooks));
+        dispatch(setBooksByGenre(groupedBooks));
+    }
+};
+
+export const thunkFetchBooks = () => async (dispatch) => {
+    const response = await csrfFetch('/api/books');
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(getAllBooks(data));
     }
 };
 
@@ -36,18 +51,20 @@ export const thunkFetchUserLikedBooks = (userId) => async (dispatch) => {
     }
 };
 
-
 const initialState = {
     booksByGenre: {},
     userLikedBooks: [],
+    all: []
 };
 
 function booksReducer(state = initialState, action) {
     switch (action.type) {
-        case SET_BOOKS:
+        case SET_BOOKS_BY_GENRE:
             return { ...state, booksByGenre: action.payload };
         case SET_USER_LIKED_BOOKS:
             return { ...state, userLikedBooks: action.payload };
+        case GET_ALL_BOOKS:
+            return { ...state, all: action.payload };
         default:
             return state;
     }

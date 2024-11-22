@@ -15,6 +15,7 @@
 .navbar {
   display: flex;
   flex-direction: column;
+  margin-bottom: 50px;
 }
 
 #logo {
@@ -49,9 +50,12 @@
   gap: 10px;
 
   .genre {
-    font-size: large;
+    font-size: small;
     font-weight: bolder;
     width: fit-content;
+    padding: 10px;
+    background-color: white;
+    border: 0px;
   }
 
 }
@@ -59,4 +63,23 @@
 .genre:hover {
   transform: translateY(-5px);
   cursor: pointer;
+  transition: transform ease 0.5s;
+  color: red;
+}
+
+#back-button {
+  background-color: purple;
+  width: fit-content;
+  padding: 10px;
+  color: white;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  margin-top: 0px;
+}
+
+#back-button:hover {
+  cursor: pointer;
+  background-color: red;
+  transform: translateY(5px);
+  transition: transform ease 0.5s
 }

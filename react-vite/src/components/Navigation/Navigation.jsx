@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
-import { thunkFetchBooks } from "../../redux/books";
+import { thunkFetchBooksByGenre } from "../../redux/books";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import "./Navigation.css";
@@ -12,11 +12,8 @@ function Navigation() {
   const booksByGenre = useSelector((state) => state.books?.booksByGenre)
 
   useEffect(() => {
-    dispatch(thunkFetchBooks());
+    dispatch(thunkFetchBooksByGenre());
   }, [dispatch]);
-
-
-  console.log(booksByGenre)
 
   return (
     <div className="navbar">
@@ -28,14 +25,15 @@ function Navigation() {
           <ProfileButton />
         </li>
       </ul>
+      <h1 id='back-button' onClick={() => navigate(-1)}>{'< Back'}</h1>
       <div className="genres">
         {
           Object.keys(booksByGenre).map((genre) => {
+            const style = window.location.pathname.split('/')[-1] === genre.toLowerCase() ? { "text-decoration": "underline", "color": "green" } : null
             return (
-              <div className='genre' onClick={() => { navigate(`/books/${genre}`) }} key={genre} >{genre}</div>
+              <button className='genre' style={style} onClick={() => { navigate(`/books/genre/${genre}`) }} key={genre} >{genre}</button>
             )
           })
-
         }
       </div>
     </div >
