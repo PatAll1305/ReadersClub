@@ -21,11 +21,12 @@ def add_liked_book():
 
 @liked_book_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
-def remove_liked_book(id):
+def remove_liked_book():
     """
     Remove a book from the liked books list.
     """
-    liked_book = LikedBook.query.get(id)
+    data = request.json
+    liked_book = LikedBook.query.filter_by(book_id=data['book_id'], user_id=data['user_id'])
     if not liked_book:
         return {'error': 'Liked book not found'}, 404
     db.session.delete(liked_book)

@@ -17,14 +17,14 @@ function Navigation() {
 
   return (
     <div className="navbar">
-      <ul className="nav-links">
-        <li id='logo' onClick={() => navigate('/')}>
+      <div className="nav-links">
+        <div id='logo' onClick={() => navigate('/')}>
           ReadersClub
-        </li>
-        <li id='profile-button'>
+        </div>
+        <div id='profile-button'>
           <ProfileButton />
-        </li>
-      </ul>
+        </div>
+      </div>
       <h1 id='back-button' onClick={() => navigate(-1)}>{'< Back'}</h1>
       <div className="genres">
         {
