@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import LikeBookModal from "../LikeBookModal/LikeBookModal";
+import DislikeBookModal from "../DislikeBookModal/DislikeBookModal";
 import "./Books.css";
 
 export default function BookById() {
@@ -28,20 +29,30 @@ export default function BookById() {
                 <h4 className="book-author">By: {book?.author}</h4>
                 <p className="book-genre">{book?.genre}</p>
                 <p className="book-description">{book?.description}</p>
-                <div className="button-container">
-                    <OpenModalMenuItem
-                        itemText="Like"
-                        modalComponent={<LikeBookModal userId={user?.id} bookId={bookId} />}
-                    />
-                    {/* {userClubs.length > 0 &&
+                {user && <div className="button-container">
+
+                    <button >
+                        <OpenModalMenuItem
+                            itemText="Like"
+                            modalComponent={<LikeBookModal userId={user?.id} bookId={bookId} />}
+                        />
+                    </button>
+                    <button >
+                        <OpenModalMenuItem
+                            itemText="Dislike"
+                            modalComponent={<DislikeBookModal userId={user?.id} bookId={bookId} />}
+                        />
+                    </button>
+                </div>
+                    /* {userClubs.length > 0 &&
                         userClubs.map((club) => (
                             <OpenModalMenuItem
-                                key={club.id}
-                                itemText={`Add to ${club.name}`}
-                                modalComponent={<p>Feature coming soon!</p>}
+                            key={club.id}
+                            itemText={`Add to ${club.name}`}
+                            modalComponent={<p>Feature coming soon!</p>}
                             />
-                        ))} */}
-                </div>
+                            ))} */
+                }
             </div>
         </div>
     );

@@ -14,6 +14,7 @@ class Book(db.Model):
     description = db.Column(db.Text, nullable=True)
     image_url = db.Column(db.Text, nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=True)
+    status = db.Column(db.String(25), default='pending')
 
     likes = db.relationship('LikedBook', backref='book', lazy=True)
     dislikes = db.relationship('DislikedBook', backref='book', lazy=True)
@@ -27,5 +28,6 @@ class Book(db.Model):
             'author': self.author,
             'description': self.description,
             'image_url': self.image_url,
+            "status": self.status,
             'user_id': self.user_id
         }

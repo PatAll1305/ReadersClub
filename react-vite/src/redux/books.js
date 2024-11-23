@@ -1,8 +1,10 @@
 import { csrfFetch } from './csrf';
 const SET_BOOKS_BY_GENRE = 'books/setBooksByGenre';
 const SET_USER_LIKED_BOOKS = 'books/setUserLikedBooks';
+const SET_USER_DISLIKED_BOOKS = 'books/setUserDislikedBooks';
 const GET_ALL_BOOKS = 'books/getAllBooks';
 const LIKE_BOOK = 'books/likeBook';
+const DISLIKE_BOOK = 'books/dislikeBook';
 
 
 const setBooksByGenre = (books) => ({
@@ -20,8 +22,18 @@ const setUserLikedBooks = (likedBooks) => ({
     payload: likedBooks,
 });
 
+const setUserDisikedBooks = (likedBooks) => ({
+    type: SET_USER_DISLIKED_BOOKS,
+    payload: likedBooks,
+});
+
 const likeBook = (bookAndUserId) => ({
     type: LIKE_BOOK,
+    payload: bookAndUserId,
+});
+
+const dislikeBook = (bookAndUserId) => ({
+    type: DISLIKE_BOOK,
     payload: bookAndUserId,
 });
 
@@ -58,6 +70,14 @@ export const thunkFetchUserLikedBooks = (userId) => async (dispatch) => {
     }
 };
 
+export const thunkFetchUserDislikedBooks = (userId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/users/${userId}/disliked-books`);
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(setUserDisikedBooks(data));
+    }
+};
+
 export const userLikeBook = (payload) => async (dispatch) => {
     const response = await csrfFetch(`/api/liked_books`, {
         method: 'POST',
@@ -69,10 +89,22 @@ export const userLikeBook = (payload) => async (dispatch) => {
         dispatch(likeBook(data));
     }
 };
+export const userDislikeBook = (payload) => async (dispatch) => {
+    const response = await csrfFetch(`/api/disliked_books`, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(dislikeBook(data));
+    }
+};
 
 const initialState = {
     booksByGenre: {},
     userLikedBooks: [],
+    userDislikedBooks: [],
     all: []
 };
 
@@ -82,6 +114,8 @@ export default function booksReducer(state = initialState, action) {
             return { ...state, booksByGenre: action.payload };
         case SET_USER_LIKED_BOOKS:
             return { ...state, userLikedBooks: action.payload };
+        case SET_USER_DISLIKED_BOOKS:
+            return { ...state, userDislikedBooks: action.payload };
         case GET_ALL_BOOKS:
             return { ...state, all: action.payload };
         case LIKE_BOOK:
