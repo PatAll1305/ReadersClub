@@ -25,7 +25,7 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-@user_routes.route('/<int:id>/liked-books')
+@user_routes.route('/<int:id>/liked-books', methods=['GET'])
 def get_liked_books(id):
     """
     Query for all liked books of a user and return detailed info about each book
@@ -49,3 +49,28 @@ def get_liked_books(id):
     ]
 
     return jsonify(liked_books_details), 200
+
+@user_routes.route('/<int:id>/disliked-books', methods=['GET'])
+def get_disliked_books(id):
+    """
+    Query for all liked books of a user and return detailed info about each book
+    """
+    if current_user.id != id:
+        return jsonify({"error": "Unauthorized access"}), 403
+
+    disliked_books = DislikedBook.query.filter_by(user_id=id).options(joinedload(DislikedBook.book)).all()
+
+    if not disliked_books:
+        return jsonify({"message": "No disliked books found"}), 404
+
+    disliked_books_details = [
+        {
+            "disliked_book_id": book.id,
+            "book_id": book.book_id,
+            "user_id": book.user_id,
+            "book": book.book.to_dict()  
+        }
+        for book in disliked_books
+    ]
+
+    return jsonify(disliked_books_details), 200

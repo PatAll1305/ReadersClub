@@ -28,5 +28,6 @@ class Book(db.Model):
             'author': self.author,
             'description': self.description,
             'image_url': self.image_url,
+            "status": self.status,
             'user_id': self.user_id
         }

@@ -4,7 +4,7 @@ from app.models import DislikedBook, db
 
 disliked_book_routes = Blueprint('disliked_books', __name__)
 
-@disliked_book_routes.route('/')
+@disliked_book_routes.route('/', methods=['GET'])
 def get_disliked_books():
     """
     Query for all liked books and return them as a list of dictionaries.
@@ -13,7 +13,6 @@ def get_disliked_books():
     return jsonify([disliked_book.to_dict() for disliked_book in disliked_books]), 200
 
 @disliked_book_routes.route('/', methods=['POST'])
-@login_required
 def add_liked_book():
     """
     Add a book to the liked books list.

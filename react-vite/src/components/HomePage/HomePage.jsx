@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { thunkFetchBooksByGenre, thunkFetchUserLikedBooks } from '../../redux/books.js';
+import { thunkFetchBooksByGenre, thunkFetchUserLikedBooks, thunkFetchUserDislikedBooks } from '../../redux/books.js';
 import './HomePage.css'
 import { restoreCSRF } from '../../redux/csrf.js';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +12,7 @@ export default function HomePage() {
     const user = useSelector((state) => state.session.user);
     const booksByGenre = useSelector((state) => state.books.booksByGenre);
     const userLikedBooks = useSelector((state) => state.books.userLikedBooks);
+    const userDislikedBooks = useSelector((state) => state.books.userDislikedBooks);
 
     if (!user) restoreCSRF()
 
@@ -19,6 +20,7 @@ export default function HomePage() {
         dispatch(thunkFetchBooksByGenre());
         if (user) {
             dispatch(thunkFetchUserLikedBooks(user.id));
+            dispatch(thunkFetchUserDislikedBooks(user.id));
         }
     }, [dispatch, user]);
 
@@ -42,7 +44,9 @@ export default function HomePage() {
             {Object.entries(booksByGenre)?.map(([genre, books]) => {
                 const filteredBooks = user
                     ? books?.filter((book) =>
-                        userLikedBooks?.every((likedBook) => likedBook?.book?.id !== book.id)
+                        userLikedBooks?.every((likedBook) => likedBook?.book?.id !== book.id) ||
+                        userDislikedBooks?.every((dislikedBook) => dislikedBook?.book.id !== book.id) ||
+                        book?.status !== 'pending'
                     )
                     : books;
 
