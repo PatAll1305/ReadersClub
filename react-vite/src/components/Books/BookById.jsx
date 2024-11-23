@@ -4,37 +4,45 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import LikeBookModal from "../LikeBookModal/LikeBookModal";
+import "./Books.css";
 
-
-export default function BooksById() {
+export default function BookById() {
     const { bookId } = useParams();
     const dispatch = useDispatch();
 
-    const user = useSelector(state => state.session.user)
-    const book = useSelector(state => (state.books?.all[+bookId - 1]));
-
+    const user = useSelector((state) => state.session.user);
+    const book = useSelector((state) => state.books?.all[+bookId - 1]);
+    // const userClubs = useSelector((state) =>
+    //     state.clubs?.filter((club) => club.owner_id === user?.id)
+    // );
 
     useEffect(() => {
-        dispatch(thunkFetchBooks())
+        dispatch(thunkFetchBooks());
     }, [dispatch]);
-
 
     return (
         <div className="book-container">
-            {
-                <div className="book-container">
-                    <img src={book?.image_url} alt={`${book?.title} cover`} />
-                    <div className="book-details">
-                        <h2 className="book-title">{book?.title}</h2>
-                        <h4 className="book-title">By: {book?.author}</h4>
-                        <p className="book-description">{book?.genre}</p>
-                        <br></br>
-                        <p className="book-description">{book?.description}</p>
-                        <OpenModalMenuItem itemText='Like' modalComponent={<LikeBookModal userId={user?.id} bookId={bookId} />} />
-                    </div>
+            <img className="book-cover" src={book?.image_url} alt={`${book?.title} cover`} />
+            <div className="book-details">
+                <h2 className="book-title">{book?.title}</h2>
+                <h4 className="book-author">By: {book?.author}</h4>
+                <p className="book-genre">{book?.genre}</p>
+                <p className="book-description">{book?.description}</p>
+                <div className="button-container">
+                    <OpenModalMenuItem
+                        itemText="Like"
+                        modalComponent={<LikeBookModal userId={user?.id} bookId={bookId} />}
+                    />
+                    {/* {userClubs.length > 0 &&
+                        userClubs.map((club) => (
+                            <OpenModalMenuItem
+                                key={club.id}
+                                itemText={`Add to ${club.name}`}
+                                modalComponent={<p>Feature coming soon!</p>}
+                            />
+                        ))} */}
                 </div>
-
-            }
+            </div>
         </div>
     );
 }

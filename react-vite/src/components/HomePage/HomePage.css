@@ -10,7 +10,8 @@
 .book-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 20px;
+    gap: 100px;
+    justify-content: space-evenly;
 }
 
 .book-card {
@@ -18,21 +19,22 @@
     border-radius: 8px;
     padding: 10px;
     text-align: center;
-    background-color: #f9f9f9;
+    width: 300px;
+    height: 300px;
 }
 
-.book-card img {
+.book-card-img {
     width: 100%;
     height: auto;
     border-radius: 4px;
 }
 
-.book-card h3 {
+.book-title {
     font-size: 16px;
     margin: 10px 0 5px;
 }
 
-.book-card p {
+.book-author {
     font-size: 14px;
     color: #555;
 }

@@ -9,8 +9,6 @@ export async function csrfFetch(url, options = {}) {
         options.headers["Content-Type"] =
             options.headers["Content-Type"] || "application/json";
         options.headers["csrf_token"] = Cookies.get("csrf_token");
-        options.headers["user_id"] = options.headers["userId"] || 'None'
-        options.headers['project_id'] = options.headers['projectId'] || 'None'
     }
 
     const res = await window.fetch(url, options)

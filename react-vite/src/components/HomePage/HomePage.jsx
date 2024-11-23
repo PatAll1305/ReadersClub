@@ -30,9 +30,9 @@ export default function HomePage() {
                     <div className="book-grid">
                         {(userLikedBooks)?.map((likedBook) => (
                             <div key={likedBook?.book_id} className="book-card" onClick={() => navigate(`/books/${likedBook?.book.id}`)}>
-                                <img src={likedBook?.book.image_url} alt={`${likedBook?.book.title} cover`} />
+                                <img className='book-card-img' src={likedBook?.book.image_url} alt={`${likedBook?.book.title} cover`} />
                                 <h3 className='book-title'>{likedBook?.book.title}</h3>
-                                <p className='book-author'>{likedBook?.book.author}</p>
+                                <p className='book-author'>By: {likedBook?.book.author}</p>
                             </div>
                         ))}
                     </div>
@@ -52,9 +52,9 @@ export default function HomePage() {
                         <div className="book-grid">
                             {filteredBooks?.map((book) => (
                                 <div key={book.id} className="book-card" onClick={() => navigate(`/books/${book.id}`)}>
-                                    <img src={book.image_url} alt={book.title} />
-                                    <h3>{book.title}</h3>
-                                    <p>By: {book.author}</p>
+                                    <img className='book-card-img' src={book.image_url} alt={book.title} />
+                                    <h3 className='book-title'>{book.title}</h3>
+                                    <p className='book-author'>By: {book.author}</p>
                                 </div>
                             ))}
                         </div>
