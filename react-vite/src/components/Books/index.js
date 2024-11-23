@@ -1,3 +1,3 @@
 import BooksById from "./BookById";
-
-export { BooksById }
+import BooksByGenre from "./BooksByGenre";
+export { BooksById, BooksByGenre }

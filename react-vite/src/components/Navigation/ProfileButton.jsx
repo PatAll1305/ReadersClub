@@ -1,19 +1,19 @@
-import { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { FaUserCircle } from 'react-icons/fa';
+import { useState, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { FaUserCircle, FaBars } from 'react-icons/fa';
 import { thunkLogout } from "../../redux/session";
-import OpenModalMenuItem from "./OpenModalMenuItem";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
+import { useNavigate } from 'react-router-dom';
+import './ProfileButton.css'
 
 function ProfileButton() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
-  const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
+  const user = useSelector(state => state.session.user)
 
   const toggleMenu = (e) => {
-    e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+    e.stopPropagation();
     setShowMenu(!showMenu);
   };
 
@@ -21,12 +21,12 @@ function ProfileButton() {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      if (ulRef.current && !ulRef.current.contains(e.target)) {
+      if (!ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
     };
 
-    document.addEventListener("click", closeMenu);
+    document.addEventListener('click', closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
@@ -39,38 +39,52 @@ function ProfileButton() {
     closeMenu();
   };
 
+  const handleOnClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.alert("Feature Coming Soon...");
+  };
+
+  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+
   return (
-    <>
-      <button className='button' onClick={toggleMenu}>
+    <div onClick={toggleMenu} className='nav-bar-dropdown'>
+      <FaBars className='hamburger' />
+      {user ? (
+        <div className='username-profile'>
+          <span>{user.username[0].toUpperCase()}</span>
+        </div>
+      ) :
         <FaUserCircle />
-      </button>
-      {showMenu && (
-        <ul className={"profile-dropdown"} ref={ulRef}>
-          {user ? (
-            <>
-              <li>{user.username}</li>
-              <li>{user.email}</li>
-              <li>
-                <button onClick={logout}>Log Out</button>
-              </li>
-            </>
-          ) : (
-            <>
-              <OpenModalMenuItem
-                itemText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-              <OpenModalMenuItem
-                itemText="Sign Up"
-                onItemClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
-            </>
-          )}
-        </ul>
-      )}
-    </>
+
+      }
+      <ul className={ulClassName} ref={ulRef}>
+        {user ? (
+          <>
+            <li onClick={() => navigate(`/users/${user?.id}`)}>Profile</li>
+            <li onClick={handleOnClick}>Recommended</li>
+            <li onClick={handleOnClick}>Clubs</li>
+            <div className='divider-horizontal'></div>
+            <li onClick={handleOnClick}>Messages</li>
+            <div className='divider-horizontal'></div>
+            <spam>                              </spam>
+            <div className='divider-horizontal'></div>
+            <div>
+              <button onClick={logout}>Logout</button>
+            </div>
+          </>
+        ) :
+          <>
+            <li onClick={() => navigate('/login')}>
+              <button >Log In</button>
+            </li>
+            <li onClick={() => navigate('/signup')} >
+              <button >Sign Up</button>
+            </li>
+          </>
+        }
+      </ul>
+    </div >
   );
 }
 
