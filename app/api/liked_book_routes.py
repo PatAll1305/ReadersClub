@@ -5,7 +5,6 @@ from app.models import LikedBook, db
 liked_book_routes = Blueprint('liked_books', __name__)
 
 @liked_book_routes.route('/', methods=['POST'])
-@login_required
 def add_liked_book():
     """
     Add a book to the liked books list.
@@ -20,7 +19,6 @@ def add_liked_book():
     return liked_book.to_dict(), 201
 
 @liked_book_routes.route('/<int:id>', methods=['DELETE'])
-@login_required
 def remove_liked_book():
     """
     Remove a book from the liked books list.

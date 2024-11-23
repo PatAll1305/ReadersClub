@@ -332,6 +332,7 @@ def seed_books():
             author=book_data["author"],
             description=book_data["description"],
             image_url=book_data["image_url"],
+            status='uploaded',
             user_id=book_data["user_id"]
         )
         db.session.add(book)

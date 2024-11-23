@@ -65,6 +65,7 @@ def update_book(id):
     book.title = data.get('title', book.title)
     book.description = data.get('description', book.description)
     book.image_url = data.get('image_url', book.image_url)
+    book.status='pending'
 
     db.session.commit()
 

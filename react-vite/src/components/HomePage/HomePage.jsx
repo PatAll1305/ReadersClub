@@ -29,10 +29,10 @@ export default function HomePage() {
                     <h2>Your Liked Books</h2>
                     <div className="book-grid">
                         {(userLikedBooks)?.map((likedBook) => (
-                            <div key={likedBook?.book_id} className="book-card" onClick={() => navigate(`/books/${likedBook?.book.id}`)}>
-                                <img className='book-card-img' src={likedBook?.book.image_url} alt={`${likedBook?.book.title} cover`} />
-                                <h3 className='book-title'>{likedBook?.book.title}</h3>
-                                <p className='book-author'>By: {likedBook?.book.author}</p>
+                            <div key={likedBook?.book_id} className="book-card" onClick={() => navigate(`/books/${likedBook?.book?.id}`)}>
+                                <img className='book-card-img' src={likedBook?.book?.image_url} alt={`${likedBook?.book?.title} cover`} />
+                                <h3 className='book-title'>{likedBook?.book?.title}</h3>
+                                <p className='book-author'>By: {likedBook?.book?.author}</p>
                             </div>
                         ))}
                     </div>
@@ -42,7 +42,7 @@ export default function HomePage() {
             {Object.entries(booksByGenre)?.map(([genre, books]) => {
                 const filteredBooks = user
                     ? books?.filter((book) =>
-                        userLikedBooks?.every((likedBook) => likedBook?.book.id !== book.id)
+                        userLikedBooks?.every((likedBook) => likedBook?.book?.id !== book.id)
                     )
                     : books;
 
@@ -52,7 +52,7 @@ export default function HomePage() {
                         <div className="book-grid">
                             {filteredBooks?.map((book) => (
                                 <div key={book.id} className="book-card" onClick={() => navigate(`/books/${book.id}`)}>
-                                    <img className='book-card-img' src={book.image_url} alt={book.title} />
+                                    <img className='book-card-img' src={book?.image_url} alt={book.title} />
                                     <h3 className='book-title'>{book.title}</h3>
                                     <p className='book-author'>By: {book.author}</p>
                                 </div>
