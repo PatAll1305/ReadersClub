@@ -18,15 +18,18 @@ def add_liked_book():
     db.session.commit()
     return liked_book.to_dict(), 201
 
-@liked_book_routes.route('/<int:id>', methods=['DELETE'])
+@liked_book_routes.route('/', methods=['DELETE'])
 def remove_liked_book():
     """
     Remove a book from the liked books list.
     """
     data = request.json
-    liked_book = LikedBook.query.filter_by(book_id=data['book_id'], user_id=data['user_id'])
+    liked_book = LikedBook.query.filter_by(book_id=data['book_id'], user_id=data['user_id']).first()
+    
     if not liked_book:
         return {'error': 'Liked book not found'}, 404
+
     db.session.delete(liked_book)
     db.session.commit()
     return {'message': 'Liked book removed successfully'}
+

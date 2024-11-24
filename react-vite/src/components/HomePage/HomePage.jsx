@@ -14,7 +14,7 @@ export default function HomePage() {
     const userLikedBooks = useSelector((state) => state.books.userLikedBooks);
     const userDislikedBooks = useSelector((state) => state.books.userDislikedBooks);
 
-    if (!user) restoreCSRF()
+    if (!user) restoreCSRF();
 
     useEffect(() => {
         dispatch(thunkFetchBooksByGenre());
@@ -31,7 +31,7 @@ export default function HomePage() {
                     <h2>Your Liked Books</h2>
                     <div className="book-grid">
                         {(userLikedBooks)?.map((likedBook) => (
-                            <div key={likedBook?.book_id} className="book-card" onClick={() => navigate(`/books/${likedBook?.book?.id}`)}>
+                            <div key={likedBook?.id} className="book-card" onClick={() => navigate(`/books/${likedBook?.book?.id}`)}>
                                 <img className='book-card-img' src={likedBook?.book?.image_url} alt={`${likedBook?.book?.title} cover`} />
                                 <h3 className='book-title'>{likedBook?.book?.title}</h3>
                                 <p className='book-author'>By: {likedBook?.book?.author}</p>
@@ -44,8 +44,8 @@ export default function HomePage() {
             {Object.entries(booksByGenre)?.map(([genre, books]) => {
                 const filteredBooks = user
                     ? books?.filter((book) =>
-                        userLikedBooks?.every((likedBook) => likedBook?.book?.id !== book.id) ||
-                        userDislikedBooks?.every((dislikedBook) => dislikedBook?.book.id !== book.id) ||
+                        !userLikedBooks?.find((likedBook) => likedBook?.book?.id === book.id) &&
+                        !userDislikedBooks?.find((dislikedBook) => dislikedBook?.book?.id === book.id) &&
                         book?.status !== 'pending'
                     )
                     : books;
@@ -65,7 +65,10 @@ export default function HomePage() {
                     </div>
                 );
             })}
+            <div>
+                <h2 className="book-title">{"Can't find a book?"}</h2>
+                <button className='create-book-button' onClick={() => navigate('/books/create')}>Add it to our collection!</button>
+            </div>
         </div>
     );
 }
-

@@ -27,7 +27,7 @@ function Navigation() {
           ReadersClub
         </div>
         <div id='search-bar'>
-          <FaSearch />
+          <FaSearch onClick={() => { window.alert('Feature coming soon!') }} />
           <input type='text' className='search-bar' disabled={disabled} placeholder='Search for your favorite book!' onClick={() => {
             setDisabled(true)
             window.alert('Feature coming soon!')

@@ -31,18 +31,16 @@ export default function BookById() {
                 <p className="book-description">{book?.description}</p>
                 {user && <div className="button-container">
 
-                    <button >
-                        <OpenModalMenuItem
-                            itemText="Like"
-                            modalComponent={<LikeBookModal userId={user?.id} bookId={bookId} />}
-                        />
-                    </button>
-                    <button >
-                        <OpenModalMenuItem
-                            itemText="Dislike"
-                            modalComponent={<DislikeBookModal userId={user?.id} bookId={bookId} />}
-                        />
-                    </button>
+                    <OpenModalMenuItem
+                        className="like-button"
+                        itemText="Like"
+                        modalComponent={<LikeBookModal userId={user?.id} bookId={bookId} />}
+                    />
+                    <OpenModalMenuItem
+                        className="dislike-button"
+                        itemText="Dislike"
+                        modalComponent={<DislikeBookModal userId={user?.id} bookId={bookId} />}
+                    />
                 </div>
                     /* {userClubs.length > 0 &&
                         userClubs.map((club) => (

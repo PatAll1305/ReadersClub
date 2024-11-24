@@ -5,6 +5,9 @@ const SET_USER_DISLIKED_BOOKS = 'books/setUserDislikedBooks';
 const GET_ALL_BOOKS = 'books/getAllBooks';
 const LIKE_BOOK = 'books/likeBook';
 const DISLIKE_BOOK = 'books/dislikeBook';
+const CREATE_BOOK = 'books/createBook';
+const REMOVE_LIKE = 'books/removeLike';
+const REMOVE_DISLIKE = 'books/removeDislike';
 
 
 const setBooksByGenre = (books) => ({
@@ -22,7 +25,7 @@ const setUserLikedBooks = (likedBooks) => ({
     payload: likedBooks,
 });
 
-const setUserDisikedBooks = (likedBooks) => ({
+const setUserDislikedBooks = (likedBooks) => ({
     type: SET_USER_DISLIKED_BOOKS,
     payload: likedBooks,
 });
@@ -35,6 +38,21 @@ const likeBook = (bookAndUserId) => ({
 const dislikeBook = (bookAndUserId) => ({
     type: DISLIKE_BOOK,
     payload: bookAndUserId,
+});
+
+const removeLike = (bookAndUserId) => ({
+    type: REMOVE_LIKE,
+    payload: bookAndUserId,
+});
+
+const removeDislike = (bookAndUserId) => ({
+    type: REMOVE_DISLIKE,
+    payload: bookAndUserId,
+});
+
+const createBook = (bookData) => ({
+    type: CREATE_BOOK,
+    payload: bookData,
 });
 
 
@@ -74,7 +92,7 @@ export const thunkFetchUserDislikedBooks = (userId) => async (dispatch) => {
     const response = await csrfFetch(`/api/users/${userId}/disliked-books`);
     if (response.ok) {
         const data = await response.json();
-        dispatch(setUserDisikedBooks(data));
+        dispatch(setUserDislikedBooks(data));
     }
 };
 
@@ -89,6 +107,31 @@ export const userLikeBook = (payload) => async (dispatch) => {
         dispatch(likeBook(data));
     }
 };
+
+export const removeLikedBook = (payload) => async (dispatch) => {
+    const response = await csrfFetch(`/api/liked_books`, {
+        method: 'DELETE',
+        body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(removeLike(data));
+    }
+};
+
+export const removeDislikedBook = (payload) => async (dispatch) => {
+    const response = await csrfFetch(`/api/disliked_books`, {
+        method: 'DELETE',
+        body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(removeDislike(data));
+    }
+};
+
 export const userDislikeBook = (payload) => async (dispatch) => {
     const response = await csrfFetch(`/api/disliked_books`, {
         method: 'POST',
@@ -98,6 +141,18 @@ export const userDislikeBook = (payload) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(dislikeBook(data));
+    }
+};
+
+export const thunkCreateBook = (payload) => async (dispatch) => {
+    const response = await csrfFetch(`/api/books`, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(createBook(data));
     }
 };
 
@@ -118,6 +173,8 @@ export default function booksReducer(state = initialState, action) {
             return { ...state, userDislikedBooks: action.payload };
         case GET_ALL_BOOKS:
             return { ...state, all: action.payload };
+        case CREATE_BOOK:
+            return { ...state, book: action.payload };
         case LIKE_BOOK:
             return {
                 ...state,
