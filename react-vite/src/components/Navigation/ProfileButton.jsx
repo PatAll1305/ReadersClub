@@ -49,7 +49,7 @@ function ProfileButton() {
 
   return (
     <div onClick={toggleMenu} className='nav-bar-dropdown'>
-      <FaBars className='hamburger' />
+      <FaBars className='profile-bar' />
       {user ? (
         <div className='username-profile'>
           <span>{user.username[0].toUpperCase()}</span>
@@ -67,7 +67,7 @@ function ProfileButton() {
             <div className='divider-horizontal'></div>
             <li onClick={handleOnClick}>Messages</li>
             <div className='divider-horizontal'></div>
-            <spam>                              </spam>
+            <span>                              </span>
             <div className='divider-horizontal'></div>
             <div>
               <button onClick={logout}>Logout</button>

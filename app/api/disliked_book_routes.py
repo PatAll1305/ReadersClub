@@ -1,5 +1,4 @@
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
 from app.models import DislikedBook, db
 
 disliked_book_routes = Blueprint('disliked_books', __name__)
@@ -13,7 +12,7 @@ def get_disliked_books():
     return jsonify([disliked_book.to_dict() for disliked_book in disliked_books]), 200
 
 @disliked_book_routes.route('/', methods=['POST'])
-def add_liked_book():
+def add_disliked_book():
     """
     Add a book to the liked books list.
     """
@@ -26,13 +25,17 @@ def add_liked_book():
     db.session.commit()
     return jsonify(disliked_book.to_dict()), 201
 
-@disliked_book_routes.route('/<int:id>', methods=['DELETE'])
-@login_required
-def remove_disliked_book(id):
+@disliked_book_routes.route('/', methods=['DELETE'])
+def remove_disliked_book():
     """
-    Remove a book from the liked books list.
+    Remove a book from the disliked books list.
     """
-    liked_book = DislikedBook.query.get_or_404(id)
-    db.session.delete(liked_book)
+    data = request.json
+    disliked_book = DislikedBook.query.filter_by(book_id=data['book_id'], user_id=data['user_id']).first()
+
+    if not disliked_book:
+        return {'error': 'Disliked book not found'}, 404
+    
+    db.session.delete(disliked_book)
     db.session.commit()
-    return jsonify({'message': 'Liked book removed successfully'}), 200
+    return {'message': 'Disliked book removed successfully'}

@@ -1,3 +1,5 @@
 import BooksById from "./BookById";
 import BooksByGenre from "./BooksByGenre";
-export { BooksById, BooksByGenre }
+import CreateBook from "./CreateBook";
+
+export { BooksById, BooksByGenre, CreateBook }
