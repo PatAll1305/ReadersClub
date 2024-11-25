@@ -1,0 +1,92 @@
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.profile-page h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #4caf50;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.profile-book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.profile-book-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    border: 2px solid #673ab7;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.profile-book-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.profile-book-card-img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.profile-book-title {
+    font-size: 1.25rem;
+    color: #4caf50;
+    text-align: center;
+    margin: 0.5rem 0;
+}
+
+.profile-book-author {
+    font-size: 1rem;
+    color: #673ab7;
+    text-align: center;
+}
+
+.liked-books-section,
+.disliked-books-section,
+.uploaded-books-section,
+.pending-books-section {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #e8f5e9;
+}
+
+.disliked-books-section {
+    background-color: #f3e5f5;
+}
+
+.uploaded-books-section {
+    background-color: #e8f5e9;
+}
+
+.pending-books-section {
+    background-color: #f3e5f5;
+}
+
+@media (max-width: 768px) {
+    .profile-page {
+        padding: 1rem;
+    }
+
+    .book-card {
+        padding: 0.5rem;
+    }
+}

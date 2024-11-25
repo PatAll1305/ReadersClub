@@ -5,17 +5,17 @@
     padding: 2rem;
     max-width: 1200px;
     margin: 0 auto;
-    background-color: #fdfdfd;
-    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border: 1px solid #88C999;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .book-cover {
     width: 45%;
     height: auto;
     border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .book-details {
@@ -29,18 +29,19 @@
     font-size: 2rem;
     font-weight: bold;
     margin: 0;
+    color: #4A4E74;
 }
 
 .book-author {
     font-size: 1.2rem;
     font-style: italic;
-    color: #555;
+    color: #606060;
 }
 
 .book-genre {
     font-size: 1.1rem;
     font-weight: bold;
-    color: #888;
+    color: #9C89CC;
 }
 
 .book-description {
@@ -53,14 +54,13 @@
     display: flex;
     flex-direction: row;
     gap: 1rem;
-
 }
 
 .button-container>button {
     padding: 0.5rem 1rem;
     font-size: 1rem;
     color: #fff;
-    background-color: #007bff;
+    background-color: #4A4E74;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -69,19 +69,23 @@
 }
 
 .button-container>button:hover {
-    background-color: #0056b3;
+    background-color: #88C999;
 }
 
 .genre-books-page {
+    display: flex;
+    flex-direction: column;
     padding: 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    gap: 50px;
 }
 
 .genre-books-page>h1 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
     text-align: center;
+    color: #4A4E74;
 }
 
 .grid-container {
@@ -91,31 +95,28 @@
 }
 
 .book-card {
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     padding: 1rem;
     border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .book-card:hover {
     transform: scale(1.02);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .book-card>h2 {
     margin: 0 0 0.5rem;
     font-size: 1.5rem;
+    color: #4A4E74;
 }
 
 .book-card>p {
     margin: 0.25rem 0;
-    color: #555;
-}
-
-.book-card>p {
-    color: #333;
+    color: #606060;
 }
 
 .create-book-container {
@@ -124,7 +125,8 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #fdfdfd;
+    border: 2px solid #88C999;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 500px;
@@ -140,7 +142,7 @@
 .create-book-form label {
     margin-bottom: 5px;
     font-weight: bold;
-    color: #333;
+    color: #4A4E74;
 }
 
 .create-book-form input,
@@ -158,9 +160,9 @@
 .create-book-form input:focus,
 .create-book-form textarea:focus,
 .create-book-form select:focus {
-    border-color: #007bff;
+    border-color: #88C999;
     outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 5px rgba(136, 201, 153, 0.5);
 }
 
 .create-book-form textarea {
@@ -170,7 +172,7 @@
 
 .create-book-form button {
     padding: 10px 15px;
-    background-color: #007bff;
+    background-color: #88C999;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -181,7 +183,7 @@
 }
 
 .create-book-form button:hover {
-    background-color: #0056b3;
+    background-color: #4A4E74;
 }
 
 .error-message {
@@ -196,14 +198,23 @@
     display: flex;
     width: 5rem;
     padding: 15px;
-    background-color: purple;
+    background-color: #4A4E74;
     justify-content: center;
     border-radius: 1rem;
-
+    transition: background-color 0.3s ease;
+    color: white;
 }
 
 .like-button:hover,
 .dislike-button:hover {
     cursor: pointer;
-    background-color: red;
+    background-color: #88C999;
+}
+
+.create-book-container {
+    align-self: center;
+}
+
+.create-book-button:hover {
+    background-color: #88C999;
 }

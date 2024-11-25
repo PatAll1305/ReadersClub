@@ -4,6 +4,7 @@ import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import HomePage from '../components/HomePage/HomePage';
 import { BooksById, BooksByGenre, CreateBook } from '../components/Books/index';
+import ProfilePage from '../components/ProfilePage/ProfilePage';
 
 export const router = createBrowserRouter([
   {
@@ -32,7 +33,11 @@ export const router = createBrowserRouter([
       {
         path: '/books/genre/:genre',
         element: <BooksByGenre />
-      }
+      },
+      {
+        path: '/users/:userId',
+        element: <ProfilePage />
+      },
     ],
   },
 ]);

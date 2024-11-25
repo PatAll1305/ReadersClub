@@ -12,7 +12,7 @@ export default function BookById() {
     const dispatch = useDispatch();
 
     const user = useSelector((state) => state.session.user);
-    const book = useSelector((state) => state.books?.all[+bookId - 1]);
+    const book = useSelector((state) => state.books?.all[bookId]);
     // const userClubs = useSelector((state) =>
     //     state.clubs?.filter((club) => club.owner_id === user?.id)
     // );
@@ -21,6 +21,9 @@ export default function BookById() {
         dispatch(thunkFetchBooks());
     }, [dispatch]);
 
+    if (book?.status === 'pending' && user.id !== book?.user_id) return (
+        <h1 className="book-title">Sorry, you cannot view this book until it is approved.</h1>
+    )
     return (
         <div className="book-container">
             <img className="book-cover" src={book?.image_url} alt={`${book?.title} cover`} />

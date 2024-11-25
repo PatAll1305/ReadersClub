@@ -160,7 +160,7 @@ const initialState = {
     booksByGenre: {},
     userLikedBooks: [],
     userDislikedBooks: [],
-    all: []
+    all: {}
 };
 
 export default function booksReducer(state = initialState, action) {
@@ -172,7 +172,13 @@ export default function booksReducer(state = initialState, action) {
         case SET_USER_DISLIKED_BOOKS:
             return { ...state, userDislikedBooks: action.payload };
         case GET_ALL_BOOKS:
-            return { ...state, all: action.payload };
+            {
+                const booksById = action.payload.reduce((acc, book) => {
+                    acc[book.id] = book;
+                    return acc;
+                }, {});
+                return { ...state, all: booksById };
+            }
         case CREATE_BOOK:
             return { ...state, book: action.payload };
         case LIKE_BOOK:
