@@ -34,6 +34,11 @@ export default function BooksByGenre() {
                     </div>
                 ))}
             </div>
+
+            <div className="create-book-container">
+                <h2 className="book-title">{"Can't find a book?"}</h2>
+                <button className='create-book-button' onClick={() => navigate('/books/create')}>Add it to our collection!</button>
+            </div>
         </div>
     );
 }
