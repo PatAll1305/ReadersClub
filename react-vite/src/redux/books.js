@@ -6,6 +6,8 @@ const GET_ALL_BOOKS = 'books/getAllBooks';
 const LIKE_BOOK = 'books/likeBook';
 const DISLIKE_BOOK = 'books/dislikeBook';
 const CREATE_BOOK = 'books/createBook';
+const UPDATE_BOOK = 'books/updateBook';
+const DELETE_BOOK = 'books/deleteBook';
 const REMOVE_LIKE = 'books/removeLike';
 const REMOVE_DISLIKE = 'books/removeDislike';
 
@@ -55,6 +57,16 @@ const createBook = (bookData) => ({
     payload: bookData,
 });
 
+const updateBook = (bookData) => ({
+    type: UPDATE_BOOK,
+    payload: bookData,
+});
+
+const deleteBook = (bookData) => ({
+    type: DELETE_BOOK,
+    payload: bookData,
+});
+
 
 
 export const thunkFetchBooksByGenre = () => async (dispatch) => {
@@ -95,6 +107,31 @@ export const thunkFetchUserDislikedBooks = (userId) => async (dispatch) => {
         dispatch(setUserDislikedBooks(data));
     }
 };
+
+export const thunkUpdateBook = (bookId, userId, data) => async (dispatch) => {
+    const response = await csrfFetch(`/api/books/${bookId}`, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: { user_id: userId }
+    });
+
+    if (response.ok) {
+        const updatedBook = await response.json();
+        dispatch(updateBook(updatedBook))
+    }
+}
+
+export const thunkDeleteBook = (bookId, userId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/books/${bookId}`, {
+        method: 'DELETE',
+        headers: { user_id: userId }
+    });
+
+    if (response.ok) {
+        const deletedBook = await response.json();
+        dispatch(deleteBook(deletedBook))
+    }
+}
 
 export const userLikeBook = (payload) => async (dispatch) => {
     const response = await csrfFetch(`/api/liked_books`, {

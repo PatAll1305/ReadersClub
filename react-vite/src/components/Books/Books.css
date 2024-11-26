@@ -72,6 +72,22 @@
     background-color: #88C999;
 }
 
+.button-container>div {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #4A4E74;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 5rem;
+    transition: background-color 0.3s ease;
+}
+
+.button-container>div:hover {
+    background-color: #88C999;
+}
+
 .genre-books-page {
     display: flex;
     flex-direction: column;
@@ -186,13 +202,6 @@
     background-color: #4A4E74;
 }
 
-.error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: -10px;
-    margin-bottom: 15px;
-}
-
 .like-button,
 .dislike-button {
     display: flex;
@@ -217,4 +226,73 @@
 
 .create-book-button:hover {
     background-color: #88C999;
+}
+
+.edit-book-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fdfdfd;
+    border: 2px solid #88C999;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-family: 'Arial', sans-serif;
+    color: #4A4E74;
+}
+
+.edit-book-container h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: #4A4E74;
+}
+
+.edit-book-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.edit-book-form label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #4A4E74;
+}
+
+.edit-book-form input,
+.edit-book-form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.edit-book-form input:focus,
+.edit-book-form textarea:focus {
+    border-color: #88C999;
+    box-shadow: 0 0 5px rgba(136, 201, 153, 0.5);
+}
+
+.edit-book-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.submit-button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #88C999;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #4A4E74;
 }

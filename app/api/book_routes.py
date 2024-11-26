@@ -73,8 +73,8 @@ def update_book(id):
 
 @book_routes.route('/<int:id>', methods=['DELETE'])
 @check_book_ownership
-def delete_project(id):
+def delete_book(id):
     book = Book.query.get_or_404(id)
     db.session.delete(book)
     db.session.commit()
-    return jsonify({"message": "Project deleted"}), 204
+    return jsonify({"message": "Book deleted"}), 204

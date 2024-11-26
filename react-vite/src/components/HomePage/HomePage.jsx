@@ -49,7 +49,7 @@ export default function HomePage() {
                         book?.status !== 'pending'
                     )
                     : books;
-
+                if (!filteredBooks.length) return null
                 return (
                     <div key={genre} className="genre-section">
                         <h3>{genre}</h3>

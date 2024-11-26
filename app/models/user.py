@@ -16,12 +16,12 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now())
 
-    club_memberships = db.relationship('ClubMember', back_populates='users')
-    books_added = db.relationship('Book', backref='added_by', lazy=True)
-    liked_books = db.relationship('LikedBook', backref='user', lazy=True)
-    disliked_books = db.relationship('DislikedBook', backref='user', lazy=True)
-    clubs = db.relationship('Club', back_populates='owner')
-    books = db.relationship('Book', back_populates='user')
+    club_memberships = db.relationship('ClubMember', back_populates='users', cascade="all, delete-orphan")
+    books_added = db.relationship('Book', backref='added_by', lazy=True, cascade="all, delete-orphan")
+    liked_books = db.relationship('LikedBook', backref='user', lazy=True, cascade="all, delete-orphan")
+    disliked_books = db.relationship('DislikedBook', backref='user', lazy=True, cascade="all, delete-orphan")
+    clubs = db.relationship('Club', back_populates='owner', cascade="all, delete-orphan")
+    books = db.relationship('Book', back_populates='user', cascade="all, delete-orphan")
 
     @property
     def password(self):

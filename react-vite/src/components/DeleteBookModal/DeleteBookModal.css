@@ -72,7 +72,7 @@
     font-size: 1.25rem;
 }
 
-.modal-content>div button {
+.modal-content>div>button {
     padding: 10px 20px;
     border: none;
     background-color: #007bff;
@@ -83,6 +83,6 @@
     transition: background-color 0.3s ease;
 }
 
-.modal-content>div button:hover {
+.modal-content>div>button:hover {
     background-color: #0056b3;
 }
