@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 import { thunkFetchBooks } from "../../redux/books";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import LikeBookModal from "../LikeBookModal/LikeBookModal";
 import DislikeBookModal from "../DislikeBookModal/DislikeBookModal";
+import DeleteBookModal from "../DeleteBookModal/DeleteBookModal";
 import "./Books.css";
 
 export default function BookById() {
     const { bookId } = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const user = useSelector((state) => state.session.user);
     const book = useSelector((state) => state.books?.all[bookId]);
@@ -32,7 +34,7 @@ export default function BookById() {
                 <h4 className="book-author">By: {book?.author}</h4>
                 <p className="book-genre">{book?.genre}</p>
                 <p className="book-description">{book?.description}</p>
-                {user && <div className="button-container">
+                {user && book?.status !== 'pending' ? < div className="button-container">
 
                     <OpenModalMenuItem
                         className="like-button"
@@ -46,15 +48,26 @@ export default function BookById() {
                     />
                 </div>
                     /* {userClubs.length > 0 &&
-                        userClubs.map((club) => (
-                            <OpenModalMenuItem
-                            key={club.id}
-                            itemText={`Add to ${club.name}`}
-                            modalComponent={<p>Feature coming soon!</p>}
-                            />
-                            ))} */
+                userClubs.map((club) => (
+                    <OpenModalMenuItem
+                        key={club.id}
+                        itemText={`Add to ${club.name}`}
+                        modalComponent={<p>Feature coming soon!</p>}
+                    />
+                ))} */
+                    : null
                 }
+                {user?.id === book?.user_id ?
+                    < div className="button-container">
+                        <div className='edit-button' onClick={() => navigate(`/books/${bookId}/edit`)}>Edit Book</div>
+                        <OpenModalMenuItem
+                            className="delete-button"
+                            itemText="Delete Book"
+                            modalComponent={<DeleteBookModal userId={user?.id} bookId={bookId} />}
+                        />
+                    </div> :
+                    null}
             </div>
-        </div>
+        </div >
     );
 }

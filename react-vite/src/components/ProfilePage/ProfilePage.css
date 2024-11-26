@@ -80,13 +80,3 @@
 .pending-books-section {
     background-color: #f3e5f5;
 }
-
-@media (max-width: 768px) {
-    .profile-page {
-        padding: 1rem;
-    }
-
-    .book-card {
-        padding: 0.5rem;
-    }
-}

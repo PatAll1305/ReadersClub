@@ -16,8 +16,8 @@ class Book(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=True)
     status = db.Column(db.String(25), default='pending')
 
-    likes = db.relationship('LikedBook', backref='book', lazy=True)
-    dislikes = db.relationship('DislikedBook', backref='book', lazy=True)
+    likes = db.relationship('LikedBook', backref='book', lazy=True, cascade="all, delete-orphan")
+    dislikes = db.relationship('DislikedBook', backref='book', lazy=True, cascade="all, delete-orphan")
     user = db.relationship('User', back_populates='books')
 
     def to_dict(self):
