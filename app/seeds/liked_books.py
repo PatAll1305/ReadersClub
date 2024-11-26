@@ -107,7 +107,7 @@ likes_seed_data = [
         'user_id': 10
     },
     {
-        'book_id': 33,
+        'book_id': 20,
         'user_id': 1
     },
     {

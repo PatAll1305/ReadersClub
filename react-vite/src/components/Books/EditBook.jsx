@@ -63,6 +63,7 @@ export default function EditBook() {
                     id="title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+                    maxLength={100}
                 />
 
                 <label >Description</label>

@@ -5,6 +5,7 @@ import Layout from './Layout';
 import HomePage from '../components/HomePage/HomePage';
 import { BooksById, BooksByGenre, CreateBook, EditBook } from '../components/Books/index';
 import ProfilePage from '../components/ProfilePage/ProfilePage';
+import { Clubs } from '../components/Clubs/index'
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
         path: '/books/:bookId/edit',
         element: <EditBook />
       },
+      {
+        path: '/clubs',
+        element: <Clubs />
+      }
     ],
   },
 ]);

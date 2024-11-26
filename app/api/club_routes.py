@@ -6,29 +6,25 @@ club_routes = Blueprint('clubs', __name__)
 
 @club_routes.route('/', methods=['GET'])
 def get_clubs():
-    clubs = Club.query.all()
-    return jsonify([club.to_dict() for club in clubs])
-
-@club_routes.route('/<int:id>/members', methods=['GET'])
-def get_memberships(id):
-    """
-    Query for all club memberships and return them as a list of dictionaries.
-    """
-    club = Club.query.get_or_404(id)
-
-    members = ClubMember.query.filter_by(club_id=club.id).options(
-        joinedload(ClubMember.users)
+    clubs = Club.query.options(
+        joinedload(Club.members).joinedload(ClubMember.users)
     ).all()
 
-    return jsonify({
-        'club': club.to_dict(),
-        'members': [
+    club_data = []
+    for club in clubs:
+        club_dict = club.to_dict()
+        club_dict['members'] = [
             {
-                **member.to_dict(),
-                'user': User.query.get(member.user_id).to_dict()
-            } for member in members
+                "club_id": member.club_id,
+                "id": member.id,
+                "user": member.users.to_dict(),
+                "user_id": member.user_id
+            }
+            for member in club.members
         ]
-    }), 200
+        club_data.append(club_dict)
+
+    return jsonify(club_data), 200
 
 @club_routes.route('/', methods=['POST'])
 def create_club():
