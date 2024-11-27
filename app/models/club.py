@@ -12,6 +12,7 @@ class Club(db.Model):
 
     owner = db.relationship('User', back_populates='clubs')
     members = db.relationship('ClubMember', back_populates='club', cascade="all, delete-orphan")
+    user = db.relationship('User', backref='memberships')
 
     def to_dict(self):
         return {

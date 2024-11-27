@@ -1,0 +1,160 @@
+.club-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border: 1px solid #88C999;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.club-header {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4A4E74;
+    margin-bottom: 1rem;
+}
+
+.club-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.club-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+.club-card h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 0 1rem;
+    color: #4A4E74;
+}
+
+.club-card p {
+    font-size: 1rem;
+    color: #606060;
+    margin: 0.5rem 0;
+}
+
+.members-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.member-card {
+    padding: 0.5rem 1rem;
+    background-color: #4A4E74;
+    color: #fff;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.member-card:hover {
+    background-color: #88C999;
+    cursor: pointer;
+}
+
+.join-button,
+.leave-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #88C999;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.join-button:hover,
+.leave-button:hover {
+    background-color: #4A4E74;
+}
+
+.create-club-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: #fdfdfd;
+    border: 2px solid #88C999;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.create-club-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.create-club-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #4A4E74;
+}
+
+.create-club-form input,
+.create-club-form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.create-club-form input:focus,
+.create-club-form textarea:focus {
+    border-color: #88C999;
+    outline: none;
+    box-shadow: 0 0 5px rgba(136, 201, 153, 0.5);
+}
+
+.create-club-form button {
+    padding: 10px 15px;
+    background-color: #88C999;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-club-form button:hover {
+    background-color: #4A4E74;
+}
+
+.create-club-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.create-club-button:hover {
+    background-color: #45a049;
+}

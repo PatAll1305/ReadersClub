@@ -7,10 +7,14 @@ import {
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import booksReducer from "./books";
+import clubsReducer from "./clubs";
+import userReducer from "./users";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  books: booksReducer
+  books: booksReducer,
+  clubs: clubsReducer,
+  users: userReducer
 });
 
 let enhancer;

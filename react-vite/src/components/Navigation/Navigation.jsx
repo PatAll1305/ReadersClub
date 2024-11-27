@@ -33,6 +33,7 @@ function Navigation() {
             window.alert('Feature coming soon!')
           }}>
           </input>
+          <button className="clubs-button" onClick={() => navigate('/clubs')}>Find a Club</button>
         </div>
         <div id='profile-button'>
           <ProfileButton />

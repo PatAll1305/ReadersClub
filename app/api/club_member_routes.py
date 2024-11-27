@@ -6,7 +6,6 @@ from sqlalchemy.orm import joinedload
 club_member_routes = Blueprint('club_members', __name__)
 
 @club_member_routes.route('/', methods=['POST'])
-@login_required
 def add_membership():
     """
     Add a user to a club.
