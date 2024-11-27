@@ -144,3 +144,17 @@
 .create-club-form button:hover {
     background-color: #4A4E74;
 }
+
+.create-club-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.create-club-button:hover {
+    background-color: #45a049;
+}

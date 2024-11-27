@@ -1,3 +1,3 @@
 import Clubs from "./Clubs";
-
-export { Clubs }
+import ClubsById from "./ClubsById";
+export { Clubs, ClubsById }
