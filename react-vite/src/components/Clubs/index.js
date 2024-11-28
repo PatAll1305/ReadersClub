@@ -1,3 +1,4 @@
 import Clubs from "./Clubs";
 import ClubsById from "./ClubsById";
-export { Clubs, ClubsById }
+import CreateClub from "./CreateClub";
+export { Clubs, ClubsById, CreateClub }

@@ -51,6 +51,7 @@ export default function LikeBookModal({ bookId, userId }) {
                                 onClick={async () => {
                                     dispatch(removeDislikedBook({ book_id: +bookId, user_id: +userId }));
                                     dispatch(userLikeBook({ book_id: +bookId, user_id: +userId }));
+                                    dispatch(thunkFetchUserLikedBooks(userId))
                                     closeModal();
                                     navigate(`/users/${userId}`);
                                 }}

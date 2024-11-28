@@ -63,7 +63,7 @@ function ProfileButton() {
           <>
             <li onClick={() => navigate(`/users/${user?.id}`)}>Profile</li>
             <li onClick={handleOnClick}>Recommended</li>
-            <li onClick={handleOnClick}>Clubs</li>
+            <li onClick={() => navigate('/clubs')}>Clubs</li>
             <div className='divider-horizontal'></div>
             <li onClick={handleOnClick}>Messages</li>
             <div className='divider-horizontal'></div>

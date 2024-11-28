@@ -26,6 +26,7 @@ export default function DislikeBookModal({ bookId, userId }) {
             setConfirmDislike(true);
         } else if (!dislikedBook?.length) {
             dispatch(userDislikeBook({ book_id: +bookId, user_id: +userId }));
+            closeModal();
             navigate(`/users/${userId}`);
         } else {
             window.alert("You already disliked this book! Must be really bad :(");
@@ -51,6 +52,7 @@ export default function DislikeBookModal({ bookId, userId }) {
                                 onClick={async () => {
                                     dispatch(removeLikedBook({ book_id: +bookId, user_id: +userId }));
                                     dispatch(userDislikeBook({ book_id: +bookId, user_id: +userId }));
+                                    dispatch(thunkFetchUserDislikedBooks(userId))
                                     closeModal();
                                     navigate(`/users/${userId}`);
                                 }}

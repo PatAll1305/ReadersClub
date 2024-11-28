@@ -66,3 +66,7 @@
 .cancel-button:hover {
     background-color: #c82333;
 }
+
+#error-message {
+    color: red;
+}

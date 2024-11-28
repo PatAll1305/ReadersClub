@@ -5,7 +5,7 @@ import Layout from './Layout';
 import HomePage from '../components/HomePage/HomePage';
 import { BooksById, BooksByGenre, CreateBook, EditBook } from '../components/Books/index';
 import ProfilePage from '../components/ProfilePage/ProfilePage';
-import { Clubs, ClubsById } from '../components/Clubs/index'
+import { Clubs, ClubsById, CreateClub } from '../components/Clubs/index'
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path: '/clubs',
         element: <Clubs />
+      },
+      {
+        path: '/clubs/create',
+        element: <CreateClub />
       },
       {
         path: '/clubs/:clubId',
