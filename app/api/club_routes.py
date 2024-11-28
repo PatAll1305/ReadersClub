@@ -55,7 +55,12 @@ def leave_club(club_id):
     user_id = data.get('user_id')
     club_member = ClubMember.query.filter_by(club_id=club_id, user_id=user_id).first()
     if not club_member:
-        return jsonify({"error": "User is not a member of this club"}), 404
+        club = Club.query.get_or_404(club_id)
+        if club.owner_id == user_id:
+            db.session.delete(club)
+            db.session.commit()
+            return jsonify({"message": "Club deleted and user removed from club"})
+
     db.session.delete(club_member)
     db.session.commit()
     return jsonify({"message": "User removed from club"}), 200

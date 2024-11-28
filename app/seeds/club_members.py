@@ -48,7 +48,7 @@ club_members_seed_data = [
     },
     {
         'club_id': 3,
-        'user_id': 10
+        'user_id': 8
     },
     {
         'club_id': 3,
@@ -56,7 +56,7 @@ club_members_seed_data = [
     },
     {
         'club_id': 3,
-        'user_id': 4
+        'user_id': 2
     },
 ]
 

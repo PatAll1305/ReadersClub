@@ -158,3 +158,149 @@
 .create-club-button:hover {
     background-color: #45a049;
 }
+
+.create-club-page {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.create-club-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.club-name-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+.submit-button,
+.cancel-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.submit-button {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.submit-button:hover {
+    background-color: #218838;
+}
+
+.cancel-button {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.cancel-button:hover {
+    background-color: #c82333;
+}
+
+.errors-list {
+    color: red;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px;
+}
+
+.club-id-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #e3f8e8, #f5e9fa);
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+}
+
+.club-header {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #4A4E74;
+    text-shadow: 1px 1px 2px #00000033;
+}
+
+.club-id-container>p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #606060;
+    text-align: center;
+}
+
+ul {
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.club-members {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid #88C999;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.club-members:hover {
+    background-color: #eaf5eb;
+    cursor: pointer;
+}
+
+.join-club-button,
+.leave-club-button {
+    display: flex;
+    align-items: center;
+    background-color: #88C999;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    margin: 20px 0;
+}
+
+.join-club-button:hover,
+.leave-club-button:hover {
+    background-color: #76B084;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.leave-club-button {
+    background-color: #dc3545;
+}
+
+.leave-club-button:hover {
+    background-color: #c82333;
+}
+
+.leave-club-button:active,
+.join-club-button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}

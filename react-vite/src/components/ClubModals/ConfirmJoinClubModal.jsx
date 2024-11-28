@@ -17,10 +17,11 @@ export default function ConfirmJoinClubModal({ clubId }) {
 
     useEffect(() => {
         dispatch(thunkFetchClubs());
-    });
+    }, [dispatch]);
 
     const handleConfirm = () => {
         dispatch(thunkJoinClub(+clubId, user?.id))
+        window.location.reload()
         closeModal();
     }
 

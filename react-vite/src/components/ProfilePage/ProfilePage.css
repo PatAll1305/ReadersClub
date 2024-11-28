@@ -14,13 +14,15 @@
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.profile-book-grid {
+.profile-book-grid,
+.profile-clubs-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
 }
 
-.profile-book-card {
+.profile-book-card,
+.profile-club-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,9 +34,11 @@
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.profile-book-card:hover {
+.profile-book-card:hover,
+.profile-club-card:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
 }
 
 .profile-book-card-img {
@@ -46,7 +50,8 @@
     margin-bottom: 0.5rem;
 }
 
-.profile-book-title {
+.profile-book-title,
+.profile-club-name {
     font-size: 1.25rem;
     color: #4caf50;
     text-align: center;
@@ -62,7 +67,8 @@
 .liked-books-section,
 .disliked-books-section,
 .uploaded-books-section,
-.pending-books-section {
+.pending-books-section,
+.joined-clubs-section {
     padding: 1rem;
     border: 1px solid #ccc;
     border-radius: 10px;
