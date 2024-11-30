@@ -26,7 +26,7 @@ export default function BooksByGenre() {
             <div className="grid-container">
                 {booksByGenre.map((book) => (
                     <div className="book-card" key={book.id} onClick={() => { navigate(`/books/${book.id}`) }}>
-                        <img src={book.image_url} alt={`${book.title} cover`} />
+                        <img className="book-card-image" src={book.image_url} alt={`${book.title} cover`} />
                         <h2>{book.title}</h2>
                         <p>Author: {book.author}</p>
                         <p>Description: {book.description}</p>

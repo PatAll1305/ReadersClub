@@ -296,3 +296,10 @@
 .submit-button:hover {
     background-color: #4A4E74;
 }
+
+.book-card-image {
+    display: flex;
+    max-width: 89%;
+    max-height: 80%;
+    margin-bottom: 30px;
+}
