@@ -114,3 +114,17 @@
 .search-bar:hover {
   border: 5px solid red;
 }
+
+.clubs-button {
+  background-color: green;
+  color: white;
+  padding: 5px 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.clubs-button:hover {
+  background-color: red;
+}
