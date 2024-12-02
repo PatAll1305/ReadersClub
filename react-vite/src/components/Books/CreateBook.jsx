@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkCreateBook } from "../../redux/books";
 import "./Books.css";
@@ -9,7 +9,10 @@ export default function CreateBook() {
     const navigate = useNavigate();
     const user = useSelector((state) => state.session.user);
 
-    if (!user) navigate('/login')
+    useEffect(() => {
+
+        if (!user) navigate('/login')
+    }, [user])
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -29,7 +32,7 @@ export default function CreateBook() {
             image_url: imageUrl,
         };
 
-        await dispatch(thunkCreateBook(newBook));
+        dispatch(thunkCreateBook(newBook));
         navigate(`/users/${user.id}`);
 
     };

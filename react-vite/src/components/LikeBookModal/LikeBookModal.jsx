@@ -27,6 +27,7 @@ export default function LikeBookModal({ bookId, userId }) {
         } else if (!likedBook?.length) {
             dispatch(userLikeBook({ book_id: +bookId, user_id: +userId }));
             navigate(`/users/${userId}`);
+            closeModal();
         } else {
             window.alert("You already liked this book! Must be really good! :)");
             closeModal();

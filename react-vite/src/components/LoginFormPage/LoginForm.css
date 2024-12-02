@@ -1,0 +1,117 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #e3f8e8, #f5e9fa);
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+}
+
+.login-header {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #4A4E74;
+    text-shadow: 1px 1px 2px #00000033;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 2px solid #88C999;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #4A4E74;
+}
+
+.login-input {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 89%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.login-input:focus {
+    outline: none;
+    border-color: #88C999;
+    box-shadow: 0 0 3px #88C999;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #88C999;
+    color: #ffffff;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.login-button:hover {
+    background-color: #76B084;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.9rem;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.signup-redirect {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #606060;
+}
+
+.signup-link {
+    color: #4A4E74;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.signup-link:hover {
+    color: #88C999;
+    text-decoration: underline;
+}
+
+.demo-login-label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #4A4E74;
+    align-self: center;
+    margin-top: 10px;
+}
+
+.demo-login-input {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    color: white;
+    align-self: center;
+    background-color: #88C999;
+    width: 50%;
+    height: 100%;
+    align-items: center;
+}
