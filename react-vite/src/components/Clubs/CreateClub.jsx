@@ -33,7 +33,8 @@ export default function CreateClub() {
 
     useEffect(() => {
         dispatch(thunkFetchClubs())
-    }, [dispatch])
+        if (!ownerId) navigate('/login')
+    }, [dispatch, ownerId])
 
     return (
         <div className="create-club-page">
