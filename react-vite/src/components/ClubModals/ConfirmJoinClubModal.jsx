@@ -21,7 +21,7 @@ export default function ConfirmJoinClubModal({ clubId }) {
 
     const handleConfirm = () => {
         dispatch(thunkJoinClub(+clubId, user?.id))
-        window.location.reload()
+        dispatch(thunkFetchClubs())
         closeModal();
     }
 
