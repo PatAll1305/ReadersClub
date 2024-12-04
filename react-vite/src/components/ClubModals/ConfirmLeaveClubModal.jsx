@@ -27,7 +27,7 @@ export default function ConfirmLeaveClubModal({ clubId }) {
         if (isOwner) {
             navigate('/clubs');
         }
-        window.location.reload()
+        dispatch(thunkFetchClubs())
     };
 
     return (
