@@ -2,6 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .clubs import seed_clubs, undo_clubs
 from .club_members import seed_club_members, undo_club_members
+from .club_messages import seed_club_messages, undo_club_messages
 from .books import seed_books, undo_books
 from .liked_books import seed_liked_books, undo_liked_books
 from .disliked_books import seed_disliked_books, undo_disliked_books
@@ -23,6 +24,7 @@ def seed():
         undo_users()
         undo_clubs()
         undo_club_members()
+        undo_club_messages()
         undo_books()
         undo_liked_books()
         undo_disliked_books()
@@ -32,6 +34,7 @@ def seed():
     seed_disliked_books()
     seed_clubs()
     seed_club_members()
+    seed_club_messages()
     # Add other seed functions here
 
 
@@ -44,4 +47,5 @@ def undo():
     undo_disliked_books()
     undo_clubs()
     undo_club_members()
+    undo_club_messages()
     # Add other undo functions here
