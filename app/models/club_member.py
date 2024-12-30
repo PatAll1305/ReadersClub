@@ -9,6 +9,7 @@ class ClubMember(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     club_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('clubs.id')), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    status = db.Column(db.String(25), default='pending')
 
     club = db.relationship('Club', back_populates='members')
     users = db.relationship('User', back_populates='club_memberships')  
@@ -17,5 +18,6 @@ class ClubMember(db.Model):
         return {
             "id": self.id,
             "club_id": self.club_id,
-            "user_id": self.user_id
+            "user_id": self.user_id,
+            "status": self.status
         }

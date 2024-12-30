@@ -22,6 +22,7 @@ class User(db.Model, UserMixin):
     disliked_books = db.relationship('DislikedBook', backref='user', lazy=True, cascade="all, delete-orphan")
     clubs = db.relationship('Club', back_populates='owner', cascade="all, delete-orphan")
     books = db.relationship('Book', back_populates='user', cascade="all, delete-orphan")
+    messages = db.relationship('ClubMessage', back_populates='user', cascade="all, delete-orphan")
 
     @property
     def password(self):

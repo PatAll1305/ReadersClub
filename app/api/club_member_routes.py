@@ -29,3 +29,5 @@ def remove_membership(id):
     db.session.delete(membership)
     db.session.commit()
     return jsonify({'message': 'Membership removed successfully'}), 200
+
+
