@@ -64,7 +64,8 @@ def seed_club_members():
     for data in club_members_seed_data:
         new_member = ClubMember(
             club_id=data['club_id'],
-            user_id=data['user_id']
+            user_id=data['user_id'],
+            status='accepted'
         )
         db.session.add(new_member)
     db.session.commit()
