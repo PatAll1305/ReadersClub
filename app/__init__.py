@@ -8,6 +8,7 @@ from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.club_member_routes import club_member_routes
+from .api.club_messages_routes import club_messages_routes
 from .api.book_routes import book_routes
 from .api.club_routes import club_routes
 from .api.liked_book_routes import liked_book_routes
@@ -38,6 +39,7 @@ app.register_blueprint(club_routes, url_prefix='/api/clubs')
 app.register_blueprint(club_member_routes, url_prefix='/api/club_members')
 app.register_blueprint(liked_book_routes, url_prefix='/api/liked_books')
 app.register_blueprint(disliked_book_routes, url_prefix='/api/disliked_books')
+app.register_blueprint(club_messages_routes, url_prefix='/api/club_messages')
 db.init_app(app)
 Migrate(app, db)
 
