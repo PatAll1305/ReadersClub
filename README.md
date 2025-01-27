@@ -1,131 +1,180 @@
-# Flask React Project
+# ReadersClub
 
-This is the starter for the Flask React project.
+ReadersClub is a web application where users can join or create clubs, engage in discussions through club messages, and explore books by genre. The app also allows users to like or dislike books and manage the books they have uploaded.
 
-## Getting started
+## Features
 
-1. Clone this repository (only this branch).
+- **Clubs:**
+  - Users can join or leave existing clubs.
+  - Users can create new clubs.
+  - Clubs have members, and each member can participate in discussions through messages.
 
-2. Install dependencies.
+- **Books:**
+  - Browse books by genre.
+  - Like or dislike books, with personalized book recommendations appearing on user profiles.
+  - Add, edit, or delete books uploaded by the user.
+  - Manage books pending approval for publishing.
+
+- **Club Messages:**
+  - Fetch messages for a specific club, ordered by creation date.
+  - Add new messages, edit existing messages, or delete messages.
+
+## Tech Stack
+
+- **Frontend:** React, Redux (with Thunks), TailwindCSS.
+- **Backend:** Flask, SQLAlchemy.
+- **Database:** SQLite (Development) / PostgreSQL (Production).
+
+## Installation
+
+1. Clone the repository:
 
    ```bash
-   pipenv install -r requirements.txt
+   git clone <repository_url>
+   cd ReadersClub
    ```
 
-3. Create a __.env__ file based on the example with proper settings for your
-   development environment.
-
-4. Make sure the SQLite3 database connection URL is in the __.env__ file.
-
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention.**
-
-6. Get into your pipenv, migrate your database, seed your database, and run your
-   Flask app:
+2. Set up the virtual environment:
 
    ```bash
-   pipenv shell
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
+
+3. Install dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Set up environment variables in a `.env` file:
+
+   ```env
+   FLASK_APP=app
+   FLASK_ENV=development
+   DATABASE_URL=<your_database_url>
+   SECRET_KEY=<your_secret_key>
+   ```
+
+5. Run database migrations:
 
    ```bash
    flask db upgrade
    ```
 
+6. Seed the database:
+
    ```bash
    flask seed all
    ```
+
+7. Start the Flask server:
 
    ```bash
    flask run
    ```
 
-7. The React frontend has no styling applied. Copy the __.css__ files from your
-   Authenticate Me project into the corresponding locations in the
-   __react-vite__ folder to give your project a unique look.
+8. Start the React development server:
 
-8. To run the React frontend in development, `cd` into the __react-vite__
-   directory and run `npm i` to install dependencies. Next, run `npm run build`
-   to create the `dist` folder. The starter has modified the `npm run build`
-   command to include the `--watch` flag. This flag will rebuild the __dist__
-   folder whenever you change your code, keeping the production version up to
-   date.
+   ```bash
+   cd frontend
+   npm install
+   npm start
+   ```
 
-## Deployment through Render.com
+## API Endpoints
 
-First, recall that Vite is a development dependency, so it will not be used in
-production. This means that you must already have the __dist__ folder located in
-the root of your __react-vite__ folder when you push to GitHub. This __dist__
-folder contains your React code and all necessary dependencies minified and
-bundled into a smaller footprint, ready to be served from your Python API.
+### Club Routes
 
-Begin deployment by running `npm run build` in your __react-vite__ folder and
-pushing any changes to GitHub.
+- `GET /api/clubs/`: Fetch all clubs.
+- `POST /api/clubs/`: Create a new club.
+- `POST /api/clubs/:clubId/join`: Join a club.
+- `POST /api/clubs/:clubId/leave`: Leave a club.
 
-Refer to your Render.com deployment articles for more detailed instructions
-about getting started with [Render.com], creating a production database, and
-deployment debugging tips.
+### Club Messages Routes
 
-From the Render [Dashboard], click on the "New +" button in the navigation bar,
-and click on "Web Service" to create the application that will be deployed.
+- `GET /api/clubs/:clubId/messages`: Fetch messages for a club, ordered by `created_at`.
+- `POST /api/clubs/:clubId/messages`: Add a new message to a club.
+- `PUT /api/clubs/:clubId/messages/:messageId`: Edit an existing message.
+- `DELETE /api/clubs/:clubId/messages/:messageId`: Delete a message.
 
-Select that you want to "Build and deploy from a Git repository" and click
-"Next". On the next page, find the name of the application repo you want to
-deploy and click the "Connect" button to the right of the name.
+### Book Routes
 
-Now you need to fill out the form to configure your app. Most of the setup will
-be handled by the __Dockerfile__, but you do need to fill in a few fields.
+- `GET /api/books/`: Fetch all books.
+- `POST /api/books/`: Add a new book.
+- `PUT /api/books/:bookId`: Edit an existing book.
+- `DELETE /api/books/:bookId`: Delete a book.
 
-Start by giving your application a name.
+## Redux Store
 
-Make sure the Region is set to the location closest to you, the Branch is set to
-"main", and Runtime is set to "Docker". You can leave the Root Directory field
-blank. (By default, Render will run commands from the root directory.)
+### Actions (examples)
 
-Select "Free" as your Instance Type.
+- **Clubs:**
+  - `LOAD_CLUBS`
+  - `ADD_CLUB`
+  - `JOIN_CLUB`
+  - `LEAVE_CLUB`
 
-### Add environment variables
+- **Club Messages:**
+  - `LOAD_CLUB_MESSAGES`
+  - `ADD_CLUB_MESSAGE`
+  - `EDIT_CLUB_MESSAGE`
+  - `DELETE_CLUB_MESSAGE`
 
-In the development environment, you have been securing your environment
-variables in a __.env__ file, which has been removed from source control (i.e.,
-the file is gitignored). In this step, you will need to input the keys and
-values for the environment variables you need for production into the Render
-GUI.
+### Thunks (examples)
 
-Add the following keys and values in the Render GUI form:
+- **Clubs:**
+  - `thunkFetchClubs`
+  - `thunkCreateClub`
+  - `thunkJoinClub`
+  - `thunkLeaveClub`
 
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
+- **Club Messages:**
+  - `thunkFetchClubMessages`
+  - `thunkAddClubMessage`
+  - `thunkEditClubMessage`
+  - `thunkDeleteClubMessage`
 
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
+## Database Models
 
-Add the following keys and values:
+### Club
+- `id`: Primary key.
+- `name`: Name of the club.
+- `description`: Description of the club.
+- `created_at`: Timestamp.
 
-- DATABASE_URL (copy value from the **External Database URL** field)
+### ClubMember
+- `id`: Primary key.
+- `club_id`: Foreign key to `Club`.
+- `user_id`: Foreign key to `User`.
+- `status`: Membership status (e.g., accepted).
 
-**Note:** Add any other keys and values that may be present in your local
-__.env__ file. As you work to further develop your project, you may need to add
-more environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment.
+### ClubMessage
+- `id`: Primary key.
+- `club_id`: Foreign key to `Club`.
+- `user_id`: Foreign key to `User`.
+- `message`: Message content.
+- `created_at`: Timestamp.
 
-### Deploy
+### Book
+- `id`: Primary key.
+- `title`: Title of the book.
+- `genre`: Genre of the book.
+- `uploaded_by`: Foreign key to `User`.
+- `status`: Upload status (e.g., pending, approved).
 
-Now you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your Dockerfile
-commands being executed and any errors that occur.
+## Deployment
 
-When deployment is complete, open your deployed site and check to see that you
-have successfully deployed your Flask application to Render! You can find the
-URL for your site just below the name of the Web Service at the top of the page.
+- **Backend:** Hosted on Render with PostgreSQL.
+- **Frontend:** Deployed on Render.
 
-**Note:** By default, Render will set Auto-Deploy for your project to true. This
-setting will cause Render to re-deploy your application every time you push to
-main, always keeping it up to date.
+## Future Enhancements
 
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+- Add real-time messaging for club discussions.
+- Implement a notification system for club activity.
+- Add OAuth for social logins.
+
+---
+
+Enjoy exploring and connecting through ReadersClub!
+
